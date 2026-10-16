@@ -1,0 +1,200 @@
+dreamhome_uts=# CREATE TABLE Advert (
+dreamhome_uts(#     dateAdvert DATE NOT NULL,
+dreamhome_uts(#     PropertyForRent_propertyNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Newspaper_newspapeName VARCHAR(50) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Advert
+dreamhome_uts-#     ADD CONSTRAINT Advert_PK PRIMARY KEY (dateAdvert, PropertyForRent_propertyNo, Newspaper_newspapeName);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Branch (
+dreamhome_uts(#     branchNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Branch
+dreamhome_uts-#     ADD CONSTRAINT Branch_PK PRIMARY KEY (branchNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE BusinessOwner (
+dreamhome_uts(#     ownerNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE BusinessOwner
+dreamhome_uts-#     ADD CONSTRAINT BusinessOwner_PK PRIMARY KEY (ownerNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Client (
+dreamhome_uts(#     clientNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Client
+dreamhome_uts-#     ADD CONSTRAINT Client_PK PRIMARY KEY (clientNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Lease (
+dreamhome_uts(#     leaseNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Client_clientNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     PropertyForRent_propertyNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Lease
+dreamhome_uts-#     ADD CONSTRAINT Lease_PK PRIMARY KEY (leaseNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Newspaper (
+dreamhome_uts(#     newspapeName VARCHAR(50) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Newspaper
+dreamhome_uts-#     ADD CONSTRAINT Newspaper_PK PRIMARY KEY (newspapeName);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE PrivateOwner (
+dreamhome_uts(#     ownerNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE PrivateOwner
+dreamhome_uts-#     ADD CONSTRAINT PrivateOwner_PK PRIMARY KEY (ownerNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE PropertyForRent (
+dreamhome_uts(#     propertyNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Staff_staffNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Branch_branchNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     PrivateOwner_ownerNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     BusinessOwner_ownerNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE PropertyForRent
+dreamhome_uts-#     ADD CONSTRAINT PropertyForRent_PK PRIMARY KEY (propertyNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Registration (
+dreamhome_uts(#     Client_clientNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Branch_branchNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Staff_staffNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Registration
+dreamhome_uts-#     ADD CONSTRAINT Registration_PK PRIMARY KEY (Client_clientNo, Staff_staffNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Staff (
+dreamhome_uts(#     staffNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Branch_branchNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     Staff_staffNo_1 VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Staff
+dreamhome_uts-#     ADD CONSTRAINT Staff_PK PRIMARY KEY (staffNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Telephone (
+dreamhome_uts(#     telNo VARCHAR(15) NOT NULL,
+dreamhome_uts(#     Branch_branchNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Telephone
+dreamhome_uts-#     ADD CONSTRAINT Telephone_PK PRIMARY KEY (telNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# CREATE TABLE Viewing (
+dreamhome_uts(#     Client_clientNo VARCHAR(10) NOT NULL,
+dreamhome_uts(#     PropertyForRent_propertyNo VARCHAR(10) NOT NULL
+dreamhome_uts(# );
+CREATE TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Viewing
+dreamhome_uts-#     ADD CONSTRAINT Viewing_PK PRIMARY KEY (Client_clientNo, PropertyForRent_propertyNo);
+ALTER TABLE
+dreamhome_uts=# ALTER TABLE Advert
+dreamhome_uts-#     ADD CONSTRAINT Advert_Newspaper_FK FOREIGN KEY (Newspaper_newspapeName)
+dreamhome_uts-#     REFERENCES Newspaper (newspapeName);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Advert
+dreamhome_uts-#     ADD CONSTRAINT Advert_PropertyForRent_FK FOREIGN KEY (PropertyForRent_propertyNo)
+dreamhome_uts-#     REFERENCES PropertyForRent (propertyNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Lease
+dreamhome_uts-#     ADD CONSTRAINT Lease_Client_FK FOREIGN KEY (Client_clientNo)
+dreamhome_uts-#     REFERENCES Client (clientNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Lease
+dreamhome_uts-#     ADD CONSTRAINT Lease_PropertyForRent_FK FOREIGN KEY (PropertyForRent_propertyNo)
+dreamhome_uts-#     REFERENCES PropertyForRent (propertyNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE PropertyForRent
+dreamhome_uts-#     ADD CONSTRAINT PropertyForRent_Branch_FK FOREIGN KEY (Branch_branchNo)
+dreamhome_uts-#     REFERENCES Branch (branchNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE PropertyForRent
+dreamhome_uts-#     ADD CONSTRAINT PropRent_BusOwner_FK FOREIGN KEY (BusinessOwner_ownerNo)
+dreamhome_uts-#     REFERENCES BusinessOwner (ownerNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE PropertyForRent
+dreamhome_uts-#     ADD CONSTRAINT PropRent_PrivOwner_FK FOREIGN KEY (PrivateOwner_ownerNo)
+dreamhome_uts-#     REFERENCES PrivateOwner (ownerNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE PropertyForRent
+dreamhome_uts-#     ADD CONSTRAINT PropertyForRent_Staff_FK FOREIGN KEY (Staff_staffNo)
+dreamhome_uts-#     REFERENCES Staff (staffNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Registration
+dreamhome_uts-#     ADD CONSTRAINT Registration_Branch_FK FOREIGN KEY (Branch_branchNo)
+dreamhome_uts-#     REFERENCES Branch (branchNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Registration
+dreamhome_uts-#     ADD CONSTRAINT Registration_Client_FK FOREIGN KEY (Client_clientNo)
+dreamhome_uts-#     REFERENCES Client (clientNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Registration
+dreamhome_uts-#     ADD CONSTRAINT Registration_Staff_FK FOREIGN KEY (Staff_staffNo)
+dreamhome_uts-#     REFERENCES Staff (staffNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Staff
+dreamhome_uts-#     ADD CONSTRAINT Staff_Branch_FK FOREIGN KEY (Branch_branchNo)
+dreamhome_uts-#     REFERENCES Branch (branchNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Staff
+dreamhome_uts-#     ADD CONSTRAINT Staff_Staff_FK FOREIGN KEY (Staff_staffNo_1)
+dreamhome_uts-#     REFERENCES Staff (staffNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Telephone
+dreamhome_uts-#     ADD CONSTRAINT Telephone_Branch_FK FOREIGN KEY (Branch_branchNo)
+dreamhome_uts-#     REFERENCES Branch (branchNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Viewing
+dreamhome_uts-#     ADD CONSTRAINT Viewing_Client_FK FOREIGN KEY (Client_clientNo)
+dreamhome_uts-#     REFERENCES Client (clientNo);
+ALTER TABLE
+dreamhome_uts=#
+dreamhome_uts=# ALTER TABLE Viewing
+dreamhome_uts-#     ADD CONSTRAINT Viewing_PropertyForRent_FK FOREIGN KEY (PropertyForRent_propertyNo)
+dreamhome_uts-#     REFERENCES PropertyForRent (propertyNo);
+ALTER TABLE
